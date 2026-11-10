@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 320px;
+        }
+        .card h2 {
+            margin-bottom: 20px;
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: darkgreen;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .btn:hover {
+            background-color: #004d00;
+        }
+        .msg {
+            font-size: 14px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .error-msg {
+            color: red;
+        }
+        .success-msg {
+            color: green;
+        }
+        .link-text {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+        .link-text a {
+            color: darkgreen;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .link-text a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Login</h2>
+
+    <!-- Alert Messages -->
+    <div th:if="${param.error}" class="msg error-msg">Invalid email or password.</div>
+    <div th:if="${param.registered}" class="msg success-msg">Account registered! Please sign in.</div>
+
+    <form th:action="@{/login}" method="post">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="Enter email" autofocus>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required placeholder="Enter password">
+        </div>
+
+        <button type="submit" class="btn">Sign In</button>
+    </form>
+
+    <div class="link-text">
+        Don't have an account? <a href="/register">Register</a>
+    </div>
+</div>
+
+</body>
+</html>
